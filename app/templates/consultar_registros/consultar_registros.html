@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% block encabezado %}
+<title>Consultar registros</title>
+<link rel="stylesheet" href="{{url_for('static',filename='css/ley50/consultar/consultar_registros.css')}}">
+{% endblock %}
+
+{% block navbar %}
+
+<div class="container-fluid d-flex justify-content-between">
+
+    <div class="d-flex gap-2">
+        <a href="{{ url_for('principal.dashboard') }}" class="home-btn" title="Volver a inicio">
+            <i class="bi bi-house-fill text-white fs-4"></i>
+        </a>
+        <a href="{{url_for('principal.ley50')}}" class="back-btn" title="Volver a atrás">
+            <i class="bi bi-arrow-left text-white fs-4"></i>
+        </a>
+
+    </div>
+
+    <span class="navbar-brand mx-0">Consultar registros</span>
+    <div style="padding-left: 48px;">
+        <a href="{{ url_for('principal.logout') }}" class="logout-btn" title="Cerrar sesión">
+            <i class="bi bi-box-arrow-right text-white fs-4"></i>
+        </a>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block contenido %}
+<main class="main-consultar">
+    <div class="contenedor-principal">
+
+        <form id="formulario_busqueda">
+            <div class="mb-3 input-group responsive-width">
+                <input class="form-control" type="text" id="busqueda" placeholder="Hacer búsqueda...">
+                <input class="btn btn-outline-primary" type="submit" value="Buscar">
+            </div>
+            <div class="mb-3">
+                <div class="form-check form-check-inline">
+                    <input id="tipo-evento" class="form-check-input" type="radio" name="tipo" value="1" checked>
+                    <label class="form-check-label" for="tipo-evento">Por evento</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input id="tipo-empleado" class="form-check-input" type="radio" name="tipo" value="2">
+                    <label class="form-check-label" for="tipo-empleado">Por empleado</label>
+                </div>
+            </div>
+        </form>
+
+        <div class="fs-5 mb-2" id="conteo"></div>
+
+        <div class="table-responsive resultados-div rounded-1">
+            <table class="table table-hover table-striped position-relative">
+                <thead class="table-dark sticky-top" id="encabezado_busqueda">
+                </thead>
+                <tbody id="resultados_busqueda"></tbody>
+            </table>
+        </div>
+    </div>
+</main>
+{% endblock %}
+{% block scripts %}
+<script src="{{url_for('static', filename='js/consultar_registros/consultar_registros.js')}}"></script>
+{% endblock %}

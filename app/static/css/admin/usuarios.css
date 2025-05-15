@@ -1,0 +1,115 @@
+.main-usuarios {
+    display: flex;
+    width: 100%;
+    height: calc(100vh - 56px);
+}
+
+section {
+    height: 100%;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow-x: hidden;
+    overflow-y: auto;
+    transition: width 0.5s ease, background-color 0.8s ease, height 0.5s ease;
+}
+
+.contenido-sec {
+    overflow: auto;
+    height: 80%;
+    width: 90%;
+}
+
+.list-group {
+    overflow: auto;
+}
+
+.list-group-item {
+    display: flex;
+    justify-content: space-between;
+}
+
+.contenido-sec,
+.ver-tabla {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.ver-tabla {
+    position: absolute;
+    text-align: center;
+    pointer-events: none;
+}
+
+section.expandido .contenido-sec {
+    opacity: 1;
+}
+
+section.contraido .contenido-sec {
+    opacity: 0;
+    pointer-events: none;
+}
+
+section.expandido .ver-tabla {
+    opacity: 0;
+}
+
+section.contraido .ver-tabla {
+    opacity: 1;
+}
+
+section.contraido {
+    background-color: rgb(13, 110, 253);
+}
+
+section.contraido:hover {
+    background-color: #0b5ed7;
+    cursor: pointer;
+}
+
+.contenido-sec {
+    display: flex;
+    flex-direction: column;
+}
+
+#tablaEmpleados {
+    max-height: 80%;
+    overflow: scroll;
+}
+
+.modal-edicion{
+    border: 1px solid rgb(192, 192, 192);
+    border-radius: 5px;
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+
+dialog::backdrop {
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+.usarios-div{
+    flex: 1; 
+    overflow-y: auto;
+    min-height: 0;
+}
+
+@media (max-width: 768px) {
+
+    .main-usuarios {
+        flex-direction: column;
+    }
+
+    .list-group-item {
+        flex-direction: column;
+        padding-bottom: 10px;
+    }
+
+    .contenido-sec {
+        overflow: auto;
+        height: 90%;
+        width: 90%;
+    }
+}

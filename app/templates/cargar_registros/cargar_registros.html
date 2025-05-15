@@ -1,0 +1,137 @@
+{% extends "base.html" %}
+{% block encabezado %}
+<title>Cargar registros</title>
+<link rel="stylesheet" href="{{url_for('static',filename='css/ley50/crear/crear_registros.css')}}">
+{% endblock %}
+
+{% block navbar %}
+
+<div class="container-fluid d-flex justify-content-between">
+
+    <div class="d-flex gap-2">
+        <a href="{{ url_for('principal.dashboard') }}" class="home-btn" title="Volver a inicio">
+            <i class="bi bi-house-fill text-white fs-4"></i>
+        </a>
+        <a href="{{url_for('principal.ley50')}}" class="back-btn" title="Volver a atrás">
+            <i class="bi bi-arrow-left text-white fs-4"></i>
+        </a>
+
+    </div>
+
+    <span class="navbar-brand mx-0">Crear registros</span>
+    <div style="padding-left: 48px;">
+        <a href="{{ url_for('principal.logout') }}" class="logout-btn" title="Cerrar sesión">
+            <i class="bi bi-box-arrow-right text-white fs-4"></i>
+        </a>
+    </div>
+</div>
+
+{% endblock %}
+
+
+{% block contenido %}
+<main class="main-usuarios">
+    <section id="sec-form-fis">
+        <div class="contenido-sec">
+            <h2>Formato físico</h2>
+            <form id="crear_evento_form" class="formulario-datos-fisico">
+                <div class="flex-fill d-flex align-items-center responsive-width column-gap-2">
+                    <label for="fecha_fis" class="form-label m-0 texto-enc-fis">Fecha</label>
+                    <input class="form-control" type="date" id="fecha_fis" required>
+                </div>
+                <div class="flex-fill d-flex align-items-center responsive-width column-gap-2">
+                    <label for="titulo_fis" class="form-label m-0 texto-enc-fis">Título</label>
+                    <input class="form-control" type="text" id="titulo_fis" required>
+                </div>
+                <div class="flex-fill d-flex align-items-center responsive-width column-gap-2">
+                    <label for="duracion_fis" class="form-label m-0 texto-enc-fis">Duración (horas)</label>
+                    <input class="form-control" type="number" id="duracion_fis" required>
+                </div>
+                <input class="px-3 btn btn-success" type="submit" value="Crear">
+            </form>
+            <div class="table-responsive usarios-div rounded-1">
+                <table class="table table-hover table-striped position-relative">
+                    <thead class="table-dark sticky-top">
+                        <tr>
+                            <th>Fecha</th>
+                            <th>Título</th>
+                            <th>Duración</th>
+                            <th colspan="2">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="cuerpotabla"></tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="ver-tabla text-white fs-4">Formato físico</div>
+
+    </section>
+    <section id="sec-form-vir">
+        <div class="contenido-sec">
+            <h2>Formato virtual</h2>
+            <form id="archivo_form" method="post">
+                <div class="mb-3">
+                    <label class="form-label" for="archivo">Cargue el archivo de Excel</label>
+                    <div class="d-flex column-gap-2">
+                        <input class="form-control" type="file" name="archivo" id="archivo" accept=".xlsx, .xls"
+                            required>
+                        <input class="btn btn-primary px-3" type="submit" value="Cargar">
+                    </div>
+                </div>
+            </form>
+            <form class="formulario-datos-fisico" id="encabezado_form"
+                action="{{url_for('cargar_registros.confirmar_carga_asis')}}" method="post">
+                <div class="flex-fill d-flex align-items-center responsive-width column-gap-2">
+                    <label for="fecha_vir" class="form-label m-0 texto-enc-fis">Fecha</label>
+                    <input class="form-control" type="date" id="fecha_vir" name="fecha_vir" disabled required>
+                </div>
+                <div class="flex-fill d-flex align-items-center responsive-width column-gap-2">
+                    <label for="titulo_vir" class="form-label m-0 texto-enc-fis">Título</label>
+                    <input class="form-control" type="text" id="titulo_vir" name="titulo_vir" disabled required>
+                </div>
+                <div class="flex-fill d-flex align-items-center responsive-width column-gap-2">
+                    <label for="duracion_vir" class="form-label m-0 texto-enc-fis">Duración (horas)</label>
+                    <input class="form-control" type="number" id="duracion_vir" name="duracion_vir" disabled required>
+                </div>
+                <input class="px-3 btn btn-success" type="submit" id="submit_vir" disabled value="Confirmar">
+            </form>
+            <div class="mb-3 border border-warning rounded-2 p-2 bg-warning-subtle text-warning-emphasis">
+                <h4>Antes de enviar aseguresé que los datos mostrados esten correctos</h4>
+                <span>En caso de errores, ajuste los datos al siguiente formato: </span><a
+                    href="{{url_for('descargar_archivo',nombre_archivo='Formato estandar.xlsx')}}"
+                    download="Formato estandar.xlsx">Descargar formato</a>
+            </div>
+            <div class="mb-3 d-flex column-gap-2">
+                <h5>Asistentes encontrados:</h5>
+                <h5 id="total_encontrados">Sin archivos cargados</h5>
+            </div>
+            <div class="table-responsive usarios-div rounded-1">
+                <table class="table table-hover table-striped position-relative">
+                    <thead class="table-dark sticky-top">
+                        <tr>
+                            <th>Cédula</th>
+                            <th>Nombre</th>
+                        </tr>
+                    </thead>
+                    <tbody id="previsualizar">
+                        <tr>
+                            <td class="text-center" colspan="2">Sin archivo cargado</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="ver-tabla text-white fs-4">Formato digital</div>
+
+    </section>
+</main>
+
+{% endblock %}
+
+{% block scripts %}
+<script src="{{url_for('static',filename='js/cargar_registros/crear_evento.js')}}"></script>
+<script src="{{url_for('static',filename='js/cargar_registros/formato_fisico.js')}}"></script>
+<script src="{{url_for('static',filename='js/cargar_registros/formato_virtual.js')}}"></script>
+{% endblock %}

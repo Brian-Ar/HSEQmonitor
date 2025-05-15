@@ -1,0 +1,93 @@
+{% extends "base.html" %}
+{% block encabezado %}
+<title>Detalles del empleado</title>
+<link rel="stylesheet" href="{{url_for('static',filename='css/ley50/consultar/detalles_empleado.css')}}">
+{% endblock %}
+
+{% block navbar %}
+
+<div class="container-fluid d-flex justify-content-between">
+
+    <div class="d-flex gap-2">
+        <a href="{{ url_for('principal.dashboard') }}" class="home-btn" title="Volver a inicio">
+            <i class="bi bi-house-fill text-white fs-4"></i>
+        </a>
+        <a href="{{url_for('consultar_registros.consultar_registros')}}" class="back-btn" title="Volver a atrás">
+            <i class="bi bi-arrow-left text-white fs-4"></i>
+        </a>
+
+    </div>
+
+    <span class="navbar-brand mx-0">Detalles evento</span>
+    <div style="padding-left: 48px;">
+        <a href="{{ url_for('principal.logout') }}" class="logout-btn" title="Cerrar sesión">
+            <i class="bi bi-box-arrow-right text-white fs-4"></i>
+        </a>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block contenido %}
+<main class="main-detalles-empleado">
+    <div class="contenido-principal">
+        <div class="d-flex mb-3">
+            <div class="d-flex flex-column flex-fill">
+                <div class="encabezado-container titulo1 h-100">
+                    <h5 class="texto-resaltado titulo1">NOMBRE:</h5>
+                    <span class="dato-encabezado text-center px-1 fw-bold">{{resultados.nombre_em}}</span>
+                </div>
+            </div>
+            <div class="d-flex flex-column flex-fill">
+                <div class="encabezado-container titulo2 h-100">
+                    <h5 class="texto-resaltado titulo2">CÉDULA:</h5>
+                    <span class="dato-encabezado text-center px-1 fw-bold">{{resultados.cedula_em}}</span>
+                </div>
+            </div>
+        </div>
+        <div class="d-flex border-bottom mb-3 justify-content-between align-items-center">
+            <div class="encabezado-container flex-fill">
+                <h5 id="espacio_horas"></h5>
+            </div>
+            <div class="encabezado-container flex-fill">
+                <h5 id="total_resultados"></h5>
+            </div>
+        </div>
+        <form class="mb-3 d-flex justify-content-center align-items-center" id="filtro_fechas">
+            <div class="d-flex justify-content-center align-items-center responsive-width">
+                <div class="d-flex align-items-center column-gap-2">
+                    <label for="inf">Desde:</label>
+                    <input class="form-control" type="date" id="inf">
+                </div>
+                <div class="d-flex align-items-center column-gap-2">
+                    <label for="sup">Hasta:</label>
+                    <input class="form-control" type="date" id="sup">
+                </div>
+                <input class="btn btn-outline-primary" type="submit" value="Filtrar">
+            </div>
+        </form>
+        <div class="table-responsive div-resultados rounded-1">
+            <table class="table table-hover table-striped position-relative">
+                <thead class="table-dark sticky-top">
+                    <tr>
+                        <th>Fecha</th>
+                        <th>Título</th>
+                        <th>Duración</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody id="cuerpo_tabla_asistencias">
+                </tbody>
+            </table>
+        </div>
+    </div>
+</main>
+
+{% endblock %}
+
+{% block scripts %}
+<script>
+    const id_em = '{{resultados.id_empleado}}'
+</script>
+<script src="{{url_for('static', filename='js/consultar_registros/detalles_empleado.js')}}"></script>
+{% endblock %}

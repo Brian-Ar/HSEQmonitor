@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+{% block encabezado %}
+<title>Empleados</title>
+{% endblock %}
+
+{% block navbar %}
+
+<div class="container-fluid d-flex justify-content-between">
+
+    <div class="d-flex gap-2">
+        <a href="{{ url_for('principal.dashboard') }}" class="home-btn" title="Volver a inicio">
+            <i class="bi bi-house-fill text-white fs-4"></i>
+        </a>
+        <a href="{{url_for('gestion.gestion')}}" class="back-btn" title="Volver a atrás">
+            <i class="bi bi-arrow-left text-white fs-4"></i>
+        </a>
+
+    </div>
+
+    <span class="navbar-brand mx-0">Empleados</span>
+    <div style="padding-left: 48px;">
+        <a href="{{ url_for('principal.logout') }}" class="logout-btn" title="Cerrar sesión">
+            <i class="bi bi-box-arrow-right text-white fs-4"></i>
+        </a>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block contenido %}
+<h2>Cargar empleados desde archivo</h2>
+<form id="act_empl_form">
+    <input type="file" id="archivo" accept=".xlsx, .xls" required>
+    <input type="submit" value="Cargar">
+</form>
+<br><br><br>
+
+<h2>Crear empleado manualmente</h2>
+<p>Asegurese que la cédula ingresada es correcta</p>
+<form id="empl_manual">
+    <label>Cédula: <input type="number" id="cedula_crear" required></label>
+    <label>Nombre: <input type="text" id="nombre_crear" required></label>
+    <input type="submit" value="Crear empleado">
+</form>
+<br><br><br>
+
+<h2>Editar empleado</h2>
+<form id="edicion_empleado">
+    <input type="hidden" id="id_emp_edi">
+    <label>Cédula: <input type="number" id="cedula_edi" required disabled></label>
+    <label>Nombre: <input type="text" id="nombre_edi" required disabled></label>
+    <input type="submit" value="Editar empleado" id="submit_edi" disabled>
+</form>
+
+<br><br><br>
+<h2>Tabla de empleados</h2>
+<div id="total_emp"></div>
+<table>
+    <thead>
+        <tr>
+            <th>Cédula</th>
+            <th>Nombre</th>
+            <th colspan="2">Acciones</th>
+        </tr>
+    </thead>
+    <tbody id="cuerpo_tabla_empleados"></tbody>
+</table>
+{% endblock %}
+{% block scripts %}
+<script src="{{url_for('static',filename='js/gestion/empleados.js')}}"></script>
+{% endblock %}

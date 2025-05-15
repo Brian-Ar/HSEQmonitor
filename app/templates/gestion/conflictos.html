@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block encabezado %}
+<title>Conflictos</title>
+{% endblock %}
+
+{% block navbar %}
+
+<div class="container-fluid d-flex justify-content-between">
+
+    <div class="d-flex gap-2">
+        <a href="{{ url_for('principal.dashboard') }}" class="home-btn" title="Volver a inicio">
+            <i class="bi bi-house-fill text-white fs-4"></i>
+        </a>
+        <a href="{{url_for('gestion.gestion')}}" class="back-btn" title="Volver a atrás">
+            <i class="bi bi-arrow-left text-white fs-4"></i>
+        </a>
+
+    </div>
+
+    <span class="navbar-brand mx-0">Conflictos</span>
+    <div style="padding-left: 48px;">
+        <a href="{{ url_for('principal.logout') }}" class="logout-btn" title="Cerrar sesión">
+            <i class="bi bi-box-arrow-right text-white fs-4"></i>
+        </a>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block contenido %}
+{% if eventos%}
+{% for evento in eventos %}
+<h3>Título: {{evento.titulo_ev}}</h3>
+<h4>Fecha: {{evento.fecha_ev}}</h4>
+<h4>Duración: {{evento.duracion_ev}}</h4>
+<h3>Cantidad de conflictos: {{evento.conflictos}}</h3>
+<a href="{{url_for('gestion.conflictos',id_ev=evento.id_evento)}}">Ver conflictos</a>
+{% endfor %}
+{% else %}
+<h2>Sin conflictos</h2>
+{% endif %}
+{% endblock %}
+{% block scripts %}
+{% endblock %}

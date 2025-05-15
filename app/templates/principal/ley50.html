@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block encabezado %}
+<title>Ley 50</title>
+<link rel="stylesheet" href="{{url_for('static',filename='css/ley50/ley50.css')}}">
+{% endblock %}
+
+{% block navbar %}
+
+<div class="container-fluid d-flex justify-content-between">
+
+    <div class="d-flex gap-2">
+        <a href="{{ url_for('principal.dashboard') }}" class="home-btn" title="Volver a inicio">
+            <i class="bi bi-house-fill text-white fs-4"></i>
+        </a>
+        <a href="{{url_for('principal.dashboard')}}" class="back-btn" title="Volver a atrás">
+            <i class="bi bi-arrow-left text-white fs-4"></i>
+        </a>
+
+    </div>
+
+    <span class="navbar-brand mx-0">Ley 50</span>
+    <div style="padding-left: 48px;">
+        <a href="{{ url_for('principal.logout') }}" class="logout-btn" title="Cerrar sesión">
+            <i class="bi bi-box-arrow-right text-white fs-4"></i>
+        </a>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block contenido %}
+<main class="main-dashboard">
+    <a href="{{url_for('consultar_registros.consultar_registros')}}" class="enlaces-seccion">
+        <div class="seccion-consultar"></div>
+        <h2 class="texto-enlaces">Consultar registros</h2>
+    </a>
+    <a href="{{url_for('cargar_registros.cargar_registros')}}" class="enlaces-seccion">
+        <div class="seccion-cargar"></div>
+        <h2 class="texto-enlaces">Crear registros</h2>
+    </a>
+</main>
+{% endblock %}

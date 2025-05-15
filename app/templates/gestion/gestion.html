@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block encabezado %}
+<title>Gestión</title>
+<link rel="stylesheet" href="{{url_for('static',filename='css/gestion/gestion.css')}}">
+{% endblock %}
+
+{% block navbar %}
+
+<div class="container-fluid d-flex justify-content-between">
+
+    <div class="d-flex gap-2">
+        <a href="{{ url_for('principal.dashboard') }}" class="home-btn" title="Volver a inicio">
+            <i class="bi bi-house-fill text-white fs-4"></i>
+        </a>
+        <a href="{{url_for('principal.dashboard')}}" class="back-btn" title="Volver a atrás">
+            <i class="bi bi-arrow-left text-white fs-4"></i>
+        </a>
+
+    </div>
+
+    <span class="navbar-brand mx-0">Gestión</span>
+    <div style="padding-left: 48px;">
+        <a href="{{ url_for('principal.logout') }}" class="logout-btn" title="Cerrar sesión">
+            <i class="bi bi-box-arrow-right text-white fs-4"></i>
+        </a>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block contenido %}
+<main class="main-dashboard">
+    <a href="{{url_for('gestion.empleados')}}" class="enlaces-seccion">
+        <div class="seccion-empleados"></div>
+        <h2 class="texto-enlaces">Empleados</h2>
+    </a>
+
+    <a href="{{url_for('gestion.conflictos')}}" class="enlaces-seccion">
+        <div class="seccion-conflictos"></div>
+        <h2 class="texto-enlaces">Conflictos</h2>
+    </a>
+</main>
+{% endblock %}
+{% block scripts %}
+{% endblock %}

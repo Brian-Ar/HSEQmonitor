@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block encabezado %}
+<title>Dashboard</title>
+<link rel="stylesheet" href="{{url_for('static',filename='css/principal/dashboard.css')}}">
+{% endblock %}
+{% block navbar %}
+
+<div class="container-fluid d-flex justify-content-between">
+
+    <a href="{{ url_for('principal.dashboard') }}" class="home-btn" title="Volver a inicio">
+        <i class="bi bi-house-fill text-white fs-4"></i>
+    </a>
+
+    <span class="navbar-brand mx-0">Dashboard</span>
+    <a href="{{ url_for('principal.logout') }}" class="logout-btn" title="Cerrar sesión">
+        <i class="bi bi-box-arrow-right text-white fs-4"></i>
+    </a>
+</div>
+
+{% endblock %}
+{% block contenido %}
+<main class="main-dashboard">
+
+    <a href="{{url_for('principal.ley50')}}" class="enlaces-seccion">
+        <div class="seccion-ley50"></div>
+        <h2 class="texto-enlaces">Ley 50</h2>
+    </a>
+
+
+    <a href="{{url_for('gestion.gestion')}}" class="enlaces-seccion">
+        <div class="seccion-gestion"></div>
+        <h2 class="texto-enlaces">Gestión</h2>
+    </a>
+
+    {% if session.tipo_us == 'Administrador' %}
+
+    <a href="{{url_for('administracion.usuarios')}}" class="enlaces-seccion">
+        <div class="seccion-admin"></div>
+        <h2 class="texto-enlaces">Administración</h2>
+    </a>
+
+    {% endif %}
+</main>
+{% endblock %}

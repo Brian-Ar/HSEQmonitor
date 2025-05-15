@@ -1,0 +1,102 @@
+.main-usuarios {
+    display: flex;
+    width: 100%;
+    height: calc(100vh - 56px);
+}
+
+section {
+    height: 100%;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow-x: hidden;
+    overflow-y: auto;
+    transition: width 0.5s ease, background-color 0.8s ease, height 0.5s ease;
+}
+
+.contenido-sec {
+    overflow: auto;
+    height: 80%;
+    width: 90%;
+}
+
+.contenido-sec,
+.ver-tabla {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.ver-tabla {
+    position: absolute;
+    text-align: center;
+    pointer-events: none;
+}
+
+section.expandido .contenido-sec {
+    opacity: 1;
+}
+
+section.contraido .contenido-sec {
+    opacity: 0;
+    pointer-events: none;
+}
+
+section.expandido .ver-tabla {
+    opacity: 0;
+}
+
+section.contraido .ver-tabla {
+    opacity: 1;
+}
+
+section.contraido {
+    background-color: rgb(13, 110, 253);
+}
+
+section.contraido:hover {
+    background-color: #0b5ed7;
+    cursor: pointer;
+}
+
+.formulario-datos-fisico{
+    display: flex;
+    column-gap: 10px;
+    margin-bottom: 20px;
+}
+
+.usarios-div{
+    flex: 1; 
+    overflow-y: auto;
+    min-height: 0;
+}
+
+.responsive-width{
+    width: 50%;
+}
+
+@media (max-width: 768px) {
+
+    .texto-enc-fis{
+        width: 40%;
+    }
+
+    .main-usuarios {
+        flex-direction: column;
+    }
+
+    .contenido-sec {
+        overflow: auto;
+        height: 90%;
+        width: 90%;
+    }
+
+    .responsive-width{
+        width: 100%;
+    }
+
+    .formulario-datos-fisico{
+        flex-direction: column;
+        row-gap: 10px;
+}
+}

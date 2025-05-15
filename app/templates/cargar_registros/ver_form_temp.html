@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+{% block encabezado %}
+<title>Evento temporal</title>
+{% endblock %}
+
+{% block navbar %}
+
+<div class="container-fluid d-flex justify-content-between">
+
+    <div class="d-flex gap-2">
+        <a href="{{ url_for('principal.dashboard') }}" class="home-btn" title="Volver a inicio">
+            <i class="bi bi-house-fill text-white fs-4"></i>
+        </a>
+        <a href="{{url_for('cargar_registros.cargar_registros')}}" class="back-btn" title="Volver a atrás">
+            <i class="bi bi-arrow-left text-white fs-4"></i>
+        </a>
+
+    </div>
+
+    <span class="navbar-brand mx-0">Evento sin terminar</span>
+    <div style="padding-left: 48px;">
+        <a href="{{ url_for('principal.logout') }}" class="logout-btn" title="Cerrar sesión">
+            <i class="bi bi-box-arrow-right text-white fs-4"></i>
+        </a>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block contenido %}
+<p>Encabezado</p><button id="btn_edicion">Editar</button>
+<form id="edicion_form">
+    <label>Título: <input type="text" disabled value="{{resultados.t_ev_temp}}" id="titulo" required></label>
+    <label>Fecha: <input type="date" disabled value="{{resultados.f_ev_temp}}" id="fecha" required></label>
+    <label>Duración (en horas): <input type="number" disabled value="{{resultados.d_ev_temp}}" id="duracion"
+            required></label>
+    <input type="submit" disabled value="Confirmar cambios" id="submit">
+</form>
+
+<h2>Agregar un asistente</h2>
+
+<label>Busqueda: <input type="text" id="busqueda"></label>
+
+<h3>Resultados busqueda</h3>
+
+<table>
+    <thead>
+        <tr>
+            <th>Cédula</th>
+            <th>Nombre</th>
+            <th>Agregar</th>
+        </tr>
+    </thead>
+    <tbody id="cuerpotabla_busqueda">
+        <tr>
+            <td colspan="3">Sin coincidencias</td>
+        </tr>
+    </tbody>
+</table>
+
+<h3>Empleados añadidos</h3>
+
+<table>
+    <thead>
+        <tr>
+            <th>Cédula</th>
+            <th>Nombre</th>
+            <th>Eliminar</th>
+        </tr>
+    </thead>
+    <tbody id="cuerpotabla_agregados">
+    </tbody>
+</table>
+
+<form action="{{url_for('cargar_registros.eventos_temp.confirmar_evento_temp')}}" method="post" id="terminar_form">
+    <input type="hidden" name="id_evento" value="{{resultados.id_evento_temp}}">
+    <input type="submit" value="Terminar">
+</form>
+{% endblock %}
+{% block scripts %}
+<script>
+    const id_ev_temp = '{{resultados.id_evento_temp}}';
+</script>
+<script src="{{url_for('static',filename='js/cargar_registros/evento_temp.js')}}"></script>
+{% endblock %}

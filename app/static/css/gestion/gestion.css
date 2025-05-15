@@ -1,0 +1,66 @@
+.main-dashboard {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    height: calc(100vh - 56px);
+}
+
+.enlaces-seccion {
+    height: 70%;
+    border-radius: 10px;
+    width: 33%;
+    margin: 0px 50px;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.2s;
+    text-decoration: none;
+}
+
+.enlaces-seccion:hover {
+    transform: scale(101%);
+}
+
+.texto-enlaces {
+    background-color: rgb(33, 37, 41);
+    width: 100%;
+    text-align: center;
+    color: #fff;
+    border-radius: 0px 0px 10px 10px;
+    padding: 10px 0px;
+    margin-bottom: 0;
+}
+
+.seccion-empleados {
+    background-image:
+        linear-gradient(to bottom, rgba(255, 255, 255, 0) 60%, rgb(255, 255, 255, 1)),
+        url('../../img/enlace-empleados.webp');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: right;
+    flex: 1;
+    border-radius: 10px 10px 0px 0px;
+}
+
+.seccion-conflictos {
+    background-image:
+        linear-gradient(to bottom, rgba(255, 255, 255, 0) 60%, rgb(255, 255, 255, 1)),
+        url('../../img/enlace-conflictos.webp');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: right;
+    flex: 1;
+    border-radius: 10px 10px 0px 0px;
+}
+
+@media (max-width: 991px) {
+    .enlaces-seccion {
+        height: 33%;
+        width: 75%;
+        margin: 40px 0px;
+    }
+
+    .main-dashboard {
+        flex-direction: column;
+    }
+}

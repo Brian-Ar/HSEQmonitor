@@ -1,0 +1,54 @@
+.login-form {
+    padding-bottom: 56px;
+    padding-right: 10%;
+}
+
+.login-form-content {
+    border: 1px solid rgb(212, 212, 212);
+    border-radius: 20px;
+    box-shadow: -2px 14px 26px -28px rgba(212, 212, 212, 0.62);
+    -webkit-box-shadow: -2px 14px 26px -28px rgba(212, 212, 212, 0.62);
+    -moz-box-shadow: -2px 14px 26px -28px rgba(212, 212, 212, 0.62);
+}
+
+.titulo-person {
+    padding-right: 10%;
+}
+
+@media (min-width: 992px) {
+    .section-login {
+        width: 40%;
+        height: 100%;
+    }
+
+    .section-imagen {
+        width: 60%;
+        height: 100%;
+        background-image: linear-gradient(to right, rgba(255, 255, 255, 0) 70%, rgba(255, 255, 255, 1)), url("../../img/login-img.webp");
+        background-repeat: no-repeat;
+        background-position: bottom center;
+        background-size: cover;
+    }
+
+    .glass {
+        background:
+            linear-gradient(to right, rgba(255, 255, 255, 0) 70%, rgba(255, 255, 255, 1)),
+            rgba(48, 48, 48, 0.28);
+        backdrop-filter: blur(8.8px);
+        -webkit-backdrop-filter: blur(8.8px);
+    }
+}
+
+@media (max-width: 991px) {
+    .section-imagen {
+        display: none;
+    }
+
+    .login-form {
+        padding-right: 0;
+    }
+
+    .titulo-person {
+        padding-right: 0;
+    }
+}

@@ -1,0 +1,40 @@
+.main-consultar {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: calc(100vh - 56px);
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.contenedor-principal {
+    display: flex;
+    flex-direction: column;
+    height: 90%;
+    width: 90%;
+    overflow: hidden;
+}
+
+.responsive-width {
+    width: 35%;
+}
+
+.resultados-div {
+    flex: 1;
+    overflow-y: auto;
+    min-height: 0;
+}
+
+@media (max-width: 1360px) {
+    .responsive-width {
+        width: 50%;
+    }
+}
+
+@media (max-width: 768px) {
+    .responsive-width {
+        width: 100%;
+    }
+}

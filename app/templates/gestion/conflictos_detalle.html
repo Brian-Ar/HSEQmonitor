@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% block encabezado %}
+<title>Detalles conflicto</title>
+<link rel="stylesheet" href="https://cdn.datatables.net/2.3.0/css/dataTables.dataTables.css" />
+{% endblock %}
+
+{% block navbar %}
+
+<div class="container-fluid d-flex justify-content-between">
+
+    <div class="d-flex gap-2">
+        <a href="{{ url_for('principal.dashboard') }}" class="home-btn" title="Volver a inicio">
+            <i class="bi bi-house-fill text-white fs-4"></i>
+        </a>
+        <a href="{{url_for('gestion.conflictos')}}" class="back-btn" title="Volver a atrás">
+            <i class="bi bi-arrow-left text-white fs-4"></i>
+        </a>
+
+    </div>
+
+    <span class="navbar-brand mx-0">Detalles</span>
+    <div style="padding-left: 48px;">
+        <a href="{{ url_for('principal.logout') }}" class="logout-btn" title="Cerrar sesión">
+            <i class="bi bi-box-arrow-right text-white fs-4"></i>
+        </a>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block contenido %}
+<h1>Título: {{evento.titulo_ev}}</h1>
+<h2>Fecha: {{evento.fecha_ev}}</h2>
+<h2>Duración: {{evento.duracion_ev}}</h2>
+<h4>Empleados no identificados: {{total}}</h4><br>
+<label>Buscar empleado: <input type="text" id="busqueda"></label>
+<table>
+    <thead>
+        <tr>
+            <th>Cédula</th>
+            <th>Nombre</th>
+        </tr>
+    </thead>
+    <tbody id="cuerpotabla_busqueda"></tbody>
+</table>
+<table>
+    <thead>
+        <tr>
+            <th>Cédula ingresada</th>
+            <th>Nombre ingresado</th>
+            <th>Selección</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for conflicto in conflictos %}
+        <tr>
+            <td>{{ conflicto.cedula_ingresada }}</td>
+            <td>{{ conflicto.nombre_ingresado }}</td>
+            <td><input type="radio" name="seleccion" value="{{conflicto.id_asis_no_iden}}"></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
+{% block scripts %}
+<script src="{{url_for('static',filename='js/gestion/conflictos.js')}}"></script>
+{% endblock %}

@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block encabezado %}
+<title>Iniciar sesión</title>
+<link rel="stylesheet" href="{{url_for('static',filename='css/principal/login.css')}}">
+{% endblock %}
+
+{% block navbar %}
+<div class="container-fluid d-flex justify-content-center">
+    <a href="#" class="navbar-brand mx-0">HSEQMonitor</a>
+</div>
+{% endblock %}
+
+{% block contenido %}
+<main class="d-flex justify-content-center align-items-center contenido w-100">
+    <section class="section-imagen">
+        <div class="glass w-100 h-100"></div>
+    </section>
+    <section class="section-login d-flex flex-column justify-content-center align-items-center">
+        <h1 class="titulo-person">Inicio de sesión</h1>
+        <form class="d-flex flex-column login-form" action="{{url_for('principal.login')}}" method="POST">
+            <div class="p-5 login-form-content d-flex flex-column">
+                <div class="mb-4 text-center">
+                    <label for="cedula" class="form-label fs-4">Cedula</label>
+                    <input type="number" class="form-control" name="cedula" required>
+                </div>
+                <div class="mb-4 text-center">
+                    <label for="contra" class="form-label fs-4">Contraseña</label>
+                    <input type="password" class="form-control" name="contra" required>
+                </div>
+                <input type="submit" class="btn btn-primary fs-5" value="Ingresar">
+            </div>
+        </form>
+    </section>
+</main>
+{% endblock %}

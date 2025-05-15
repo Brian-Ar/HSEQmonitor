@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block encabezado %}
+<title>Administración</title>
+{% endblock %}
+{% block contenido %}
+<h1>Esta es la sección de administración</h1>
+<a href="{{url_for('principal.dashboard')}}">Volver a inicio</a><br>
+<a href="{{url_for('administracion.usuarios')}}">Usuarios</a><br>
+{% endblock %}
+{% block scripts %}
+{% endblock %}
